@@ -30,6 +30,13 @@ class Configuration implements ConfigurationInterface
                         ->booleanNode('gallery')->defaultTrue()->end()
                     ->end()
                 ->end()
+                ->arrayNode('entity')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('image')->defaultValue('App\\Entity\\Image')->end()
+                    ->end()
+                ->end()
+
             ->end();
 
         return $treeBuilder;

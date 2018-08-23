@@ -29,6 +29,8 @@ class MKebzaContentExtension extends Extension
             new FileLocator(__DIR__.'/../Resources/config')
         );
 
+        $container->setParameter('mkebza_content.entity.image', $config['entity']['image']);
+
         $loader->load('services.yaml');
 
         // Include registered admins

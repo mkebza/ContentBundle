@@ -22,8 +22,6 @@ class ImageAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         parent::configureRoutes($collection);
-
-        $collection->clearExcept(['edit', 'delete']);
     }
 
     protected function configureFormFields(FormMapper $form)
