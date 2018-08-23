@@ -1,0 +1,6 @@
+#services:
+#    sonata.admin.user:
+#        class: MKebza\Content\Admin\ImageAdmin
+#        arguments: [~, App\Entity\Image, ~]
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, show_in_dashboard: true, group: 'Content', label: 'Images', icon: '<i class="fa fa-file-text"></i>' }
