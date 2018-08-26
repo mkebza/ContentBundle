@@ -61,7 +61,7 @@ class Image implements ImageInterface
      *     mapping="image",
      *     fileNameProperty="fileName",
      *     size="size",
-     *     originalName="name",
+     *     originalName="uploadName",
      *     mimeType="mime",
      *     dimensions="dimensions"
      * )
@@ -286,5 +286,14 @@ class Image implements ImageInterface
     public function getCreatedAt(): Carbon
     {
         return $this->createdAt;
+    }
+
+    public function setUploadName($name): self
+    {
+        if (null === $this->getName()) {
+            $this->setName($name);
+        }
+
+        return $this;
     }
 }

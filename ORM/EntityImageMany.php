@@ -11,14 +11,10 @@ declare(strict_types=1);
 
 namespace MKebza\Content\ORM;
 
-use Doctrine\ORM\Mapping as ORM;
-
-trait ImageableMulti
+trait EntityImageMany
 {
     /**
      * @var Image
-     *
-     * @ORM\ManyToMany(targetEntity="MKebza\Content\ORM\ImageInterface")
      */
     private $images;
 
@@ -52,9 +48,19 @@ trait ImageableMulti
     public function addImage(ImageInterface $image): self
     {
         if (!$this->images->contains($image)) {
+            $image->setReference($this);
             $this->images->add($image);
         }
 
         return $this;
     }
+
+    public function removeImage(ImageInterface $image): self
+    {
+        $this->images->remove($image);
+
+        return $this;
+    }
+
+    abstract public static function getImagesEntityFQN(): string;
 }

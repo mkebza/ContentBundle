@@ -1,0 +1,49 @@
+{% extends '@SonataAdmin/CRUD/list_outer_rows_mosaic.html.twig' %}
+{% trans_default_domain 'admin' %}
+
+{% block mosaic_label %}
+    {% if meta.options.main %}
+        <span class="mosaic-box-label label label-primary pull-right" style="font-size: 130%;">{{ 'Image.field.main'|trans }}</span>
+    {% endif %}
+
+{% endblock %}
+
+{% block sonata_mosaic_default_view %}
+    {{  block('mosaic_label') }}
+{% endblock %}
+
+{% block sonata_mosaic_hover_view %}
+    {{  block('mosaic_label') }}
+
+    {% if meta.description is array %}
+        {% for k,v in meta.description %}
+            {{ k|trans }}: <strong>{{ v }}</strong>{{ not loop.last ? '<br>' }}
+        {% endfor %}
+    {% else %}
+        {{ meta.description }}
+    {% endif %}
+{% endblock %}
+
+
+{% block sonata_mosaic_description %}
+    <div class="btn-group">
+        {#{% if admin.hasAccess('edit', object) and admin.hasRoute('edit') %}#}
+            <a href="{{ admin.generateUrl('set_main', {'id' : object|sonata_urlsafeid(admin) }) }}" class="btn btn-default btn-sm {{ meta.options.main ? 'disabled'}}">
+                <i class="fa fa-file-image-o"></i>
+            </a>
+        {#{% endif %}#}
+
+        {% if admin.hasAccess('edit', object) and admin.hasRoute('edit') %}
+            <a href="{{ admin.generateUrl('edit', {'id' : object|sonata_urlsafeid(admin) }) }}" class="btn btn-default btn-sm">
+                <i class="fa fa-pencil"></i>
+            </a>
+        {% endif %}
+        {% if admin.hasAccess('delete', object) and admin.hasRoute('delete') %}
+            <a href="{{ admin.generateObjectUrl('delete', object) }}" class="btn btn-sm btn-danger delete_link" data-toggle="modal" data-target="#sonata-modal" title="{{ 'action_delete'|trans({}, 'SonataAdminBundle') }}">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+        {% endif %}
+    </div>
+
+    {{ meta.title|truncate(40) }}
+{% endblock %}

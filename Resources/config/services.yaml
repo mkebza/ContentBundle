@@ -1,4 +1,9 @@
 services:
+    MKebza\Content\Controller\:
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']
+
+
     MKebza\Content\Service\Fixture\Provider\ImageFileProvider:
         arguments:
             $path: '%kernel.project_dir%/assets/fixture/'
@@ -14,3 +19,5 @@ services:
             $imagineCache: '@Liip\ImagineBundle\Imagine\Cache\CacheManager'
         tags: ['twig.runtime']
 
+    MKebza\Content\EventListener\Image\ImageMultiMapRelationListener:
+        tags: ['doctrine.event_subscriber']

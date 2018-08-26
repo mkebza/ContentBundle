@@ -11,7 +11,7 @@ namespace MKebza\Content\ORM;
 
 use Doctrine\ORM\Mapping as ORM;
 
-trait Imageable
+trait EntityImage
 {
     /**
      * @var Image

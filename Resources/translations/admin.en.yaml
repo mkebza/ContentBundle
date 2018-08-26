@@ -1,0 +1,6 @@
+Image:
+    field:
+        size: Size
+        dimensions: Dimensions
+        mime: Mime
+        main: Main image

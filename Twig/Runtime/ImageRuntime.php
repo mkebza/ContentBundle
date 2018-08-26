@@ -47,9 +47,13 @@ class ImageRuntime implements RuntimeExtensionInterface
      *
      * @return null|string
      */
-    public function imageAsset(ImageInterface $obj): ?string
+    public function imageAsset(?ImageInterface $obj, string $default = null): ?string
     {
-        return $this->helper->asset($obj, 'image', null);
+        if (null === $obj) {
+            return $default;
+        }
+
+        return '/image/'.$this->helper->asset($obj, 'image', null);
     }
 
     /**
@@ -67,6 +71,6 @@ class ImageRuntime implements RuntimeExtensionInterface
 
         $path = $this->helper->asset($obj, 'image', null);
 
-        return $this->imagineCache->resolve($path, $filter);
+        return $this->imagineCache->getBrowserPath($path, $filter, [], null);
     }
 }
