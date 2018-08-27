@@ -1,0 +1,16 @@
+services:
+    sonata.admin.text_block:
+        class: MKebza\Content\Admin\TextBlockAdmin
+        arguments:
+            - ~
+            - App\Entity\Content\TextBlock
+            - ~
+        tags:
+            -
+                name: sonata.admin
+                manager_type: orm
+                show_in_dashboard: true
+                group: 'Content'
+                label: 'Block'
+                icon: '<i class="fa fa-file-text"></i>'
+

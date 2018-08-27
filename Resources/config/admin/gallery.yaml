@@ -1,6 +1,31 @@
-#services:
-#    sonata.admin.user:
-#        class: MKebza\Content\Admin\ImageAdmin
-#        arguments: [~, App\Entity\Image, ~]
-#        tags:
-#            - { name: sonata.admin, manager_type: orm, show_in_dashboard: true, group: 'Content', label: 'Images', icon: '<i class="fa fa-file-text"></i>' }
+services:
+    sonata.admin.gallery:
+        class: MKebza\Content\Admin\GalleryAdmin
+        arguments:
+            - ~
+            - App\Entity\Content\Gallery
+            - ~
+        calls:
+            - [ addChild, ['@sonata.admin.gallery.image', 'reference']]
+        tags:
+            -
+                name: sonata.admin
+                manager_type: orm
+                show_in_dashboard: true
+                group: 'Content'
+                label: 'Gallery'
+                icon: '<i class="fa fa-file-text"></i>'
+
+    sonata.admin.gallery.image:
+        class: MKebza\Content\Admin\GalleryImageAdmin
+        arguments:
+            - ~
+            - App\Entity\Content\GalleryImage
+            - ~
+        tags:
+        -
+            name: sonata.admin
+            manager_type: orm
+            show_in_dashboard: false
+            show_mosaic_button: true
+

@@ -9,6 +9,7 @@
 
 namespace MKebza\Content\Admin;
 
+use App\Entity\Accommodation\RoomImage;
 use MKebza\Content\Entity\Image;
 use MKebza\Content\ORM\EntityImage;
 use MKebza\SonataExt\Admin\AbstractAdmin;
@@ -23,7 +24,7 @@ class ImageAdmin extends AbstractAdmin
 {
     protected $datagridValues = [
         // name of the ordered field (default = the model's id field, if any)
-        '_sort_by' => 'updatedAt',
+        '_sort_by' => 'created',
     ];
 
     protected $baseRoutePattern = 'image';
@@ -35,6 +36,7 @@ class ImageAdmin extends AbstractAdmin
         $this->classnameLabel = 'Image';
 
         $this->setTemplate('outer_list_rows_mosaic', '@MKebzaContent/image/outer_list_rows_mosaic.html.twig');
+        $this->setTemplate('edit', '@MKebzaContent/image/edit.html.twig');
     }
 
     /**
@@ -106,20 +108,16 @@ class ImageAdmin extends AbstractAdmin
     {
         parent::configureFormFields($form);
 
+        $form
+            ->with(null);
+
         if ($this->isCreating()) {
-            $form
-                ->with(null)
-                    ->add('image', VichImageType::class)
-                    ->add('name')
-                ->end();
-        } else {
-            $form
-                ->tab('word.general')
-                    ->with(null)
-                        ->add('name')
-                    ->end()
-                ->end();
+            $form->add('image', VichImageType::class, ['attr' => ['class' => 'image-multi-tab-input-file']]);
         }
+
+        $form
+            ->add('name', null, ['attr' => ['class' => 'image-multi-tab-input-name']])
+            ->ifEnd();
     }
 
     protected function configureListFields(ListMapper $list)

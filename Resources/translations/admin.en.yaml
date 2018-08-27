@@ -4,3 +4,6 @@ Image:
         dimensions: Dimensions
         mime: Mime
         main: Main image
+    action:
+        setMain:
+            flashSuccess: Image ':image' was set as main for object ':entity'

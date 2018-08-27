@@ -21,3 +21,6 @@ services:
 
     MKebza\Content\EventListener\Image\ImageMultiMapRelationListener:
         tags: ['doctrine.event_subscriber']
+
+    MKebza\Content\EventListener\Image\MapInheritanceListener:
+        tags: ['doctrine.event_subscriber']

@@ -15,6 +15,7 @@ use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use MKebza\Content\ORM\EntityImageMany;
+use MKebza\SonataExt\Utils\ClassAnalyzer;
 
 class ImageMultiMapRelationListener implements EventSubscriber
 {
@@ -29,7 +30,8 @@ class ImageMultiMapRelationListener implements EventSubscriber
     {
         $metadata = $event->getClassMetadata();
 
-        if (!in_array(EntityImageMany::class, $metadata->getReflectionClass()->getTraitNames(), true)) {
+
+        if (!ClassAnalyzer::hasTrait($metadata->getName(), EntityImageMany::class) || $metadata->isMappedSuperclass) {
             return;
         }
 

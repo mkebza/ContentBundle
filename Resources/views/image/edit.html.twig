@@ -1,0 +1,15 @@
+{% extends '@SonataAdmin/CRUD/base_edit.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $(".image-multi-tab-input-file").on('change', function() {
+                var filename = $(this).val().split('\\').pop();
+
+                var $inputName = $(this).parents(".box-body:first").find('.image-multi-tab-input-name');
+                $inputName.val(filename.replace(/\.[^/.]+$/, ""));
+            });
+        });
+    </script>
+{% endblock %}

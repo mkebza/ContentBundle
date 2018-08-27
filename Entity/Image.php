@@ -12,6 +12,7 @@ namespace MKebza\Content\Entity;
 use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 use MKebza\Content\ORM\ImageInterface;
+use MKebza\SonataExt\ORM\EntityId;
 use MKebza\SonataExt\ORM\IdAble;
 use MKebza\SonataExt\ORM\Timestampable\Timestampable;
 use Symfony\Component\HttpFoundation\File\File;
@@ -23,7 +24,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Image implements ImageInterface
 {
-    use IdAble, Timestampable;
+    use EntityId, Timestampable;
 
     /**
      * @ORM\Column(name="name", nullable=true)
@@ -260,25 +261,6 @@ class Image implements ImageInterface
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getUpdatedAt(): \DateTime
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @param \DateTime $updatedAt
-     *
-     * @return Product
-     */
-    public function setUpdatedAt(\DateTime $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
 
     /**
      * @return Carbon

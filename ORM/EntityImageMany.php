@@ -16,7 +16,7 @@ trait EntityImageMany
     /**
      * @var Image
      */
-    private $images;
+    protected $images;
 
     /**
      * @return Image
