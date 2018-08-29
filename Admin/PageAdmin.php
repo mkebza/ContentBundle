@@ -11,53 +11,54 @@ declare(strict_types=1);
 
 namespace MKebza\Content\Admin;
 
-use MKebza\Content\Entity\TextBlock;
-use MKebza\Content\Service\TextBlock\TextBlockTypeRegistry;
+use MKebza\Content\Entity\Page;
+use MKebza\Content\Service\Page\PageTypeRegistry;
 use MKebza\SonataExt\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class TextBlockAdmin extends AbstractAdmin
+class PageAdmin extends AbstractAdmin
 {
-    protected $baseRoutePattern = 'block';
-    protected $baseRouteName = 'admin_text_block';
+    protected $baseRoutePattern = 'page';
+    protected $baseRouteName = 'admin_page';
 
     /**
-     * @var TextBlockTypeRegistry
+     * @var PageTypeRegistry
      */
-    protected $textBlockTypeRegistry;
+    protected $pageTypeRegistry;
 
     /**
-     * @param TextBlockTypeRegistry $textBlockTypeRegistry
+     * @param PageTypeRegistry $pageTypeRegistry
      */
-    public function setTextBlockTypeRegistry(TextBlockTypeRegistry $textBlockTypeRegistry): void
+    public function setPageTypeRegistry(PageTypeRegistry $pageTypeRegistry): void
     {
-        $this->textBlockTypeRegistry = $textBlockTypeRegistry;
+        $this->pageTypeRegistry = $pageTypeRegistry;
     }
 
     protected function configureFormFields(FormMapper $form)
     {
-        /** @var TextBlock $block */
+        /** @var Page $block */
         $block = $this->getSubject();
         $form
             ->with(null)
                 ->add('name');
 
-        if ($this->isCreating()) {
+        if ($this->isCreating() && !$this->pageTypeRegistry->isEmpty()) {
             $form->add('type', ChoiceType::class, [
-                'choices' => ['----' => null] + $this->textBlockTypeRegistry->getChoices(),
+                'choices' => ['----' => null] + $this->pageTypeRegistry->getChoices(),
             ]);
         }
 
         $form
+                ->add('active')
                 ->add('title')
                 ->add('content')
             ->end();
 
         if ($block->getType()) {
-            $type = $this->textBlockTypeRegistry->get($block->getType());
+            $type = $this->pageTypeRegistry->get($block->getType());
 
             $form
                 ->with('Extra')
@@ -74,14 +75,13 @@ class TextBlockAdmin extends AbstractAdmin
                     ->add('key')
                 ->end();
         }
-
-//            ->add('extra', ImmutableArrayType::class, [])
     }
 
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->addIdentifier('name');
+            ->addIdentifier('name')
+            ->add('active', null, ['editable' => true]);
 
         if ($this->isGrantedSymfony('ROLE_DEVELOPER')) {
             $list

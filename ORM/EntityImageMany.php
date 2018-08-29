@@ -21,7 +21,7 @@ trait EntityImageMany
     protected $images;
 
     /**
-     * @return Image[]|ArrayCollection
+     * @return ArrayCollection|Image[]
      */
     public function getImages(): iterable
     {

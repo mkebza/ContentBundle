@@ -20,7 +20,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 class ImageController extends CRUDController
 {
-    public function setMainAction($id, $childId, $childChildId = null, EntityManagerInterface $em, TranslatorInterface $translator): Response
+    public function setMainAction($id, $childId, $childChildId, EntityManagerInterface $em, TranslatorInterface $translator): Response
     {
         // Shift params for more deep admins
         if (null !== $childChildId) {
@@ -46,7 +46,7 @@ class ImageController extends CRUDController
                 'Image.action.setMain.flashSuccess',
                 [
                     ':image' => $image->getName(),
-                    ':entity' => (string)$entity
+                    ':entity' => (string) $entity,
                 ],
                 'admin'));
 

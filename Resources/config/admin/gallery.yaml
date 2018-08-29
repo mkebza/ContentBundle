@@ -23,9 +23,9 @@ services:
             - App\Entity\Content\GalleryImage
             - ~
         tags:
-        -
-            name: sonata.admin
-            manager_type: orm
-            show_in_dashboard: false
-            show_mosaic_button: true
+            -
+                name: sonata.admin
+                manager_type: orm
+                show_in_dashboard: false
+                show_mosaic_button: true
 

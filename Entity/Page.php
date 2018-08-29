@@ -12,24 +12,20 @@ declare(strict_types=1);
 namespace MKebza\Content\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use MKebza\SonataExt\ORM\EntityActive;
 use MKebza\SonataExt\ORM\EntityId;
 use MKebza\SonataExt\ORM\EntityKey;
+use MKebza\SonataExt\ORM\Sluggable\Sluggable;
 use MKebza\SonataExt\ORM\Timestampable\Timestampable;
 
 /**
- * Class TextBlock.
+ * Class Page.
  *
  * @ORM\MappedSuperclass()
  */
-class TextBlock
+class Page
 {
-    use EntityId, EntityKey, Timestampable;
-
-    /**
-     * @var null|string
-     * @ORM\Column(type="string", nullable=true, length=100)
-     */
-    private $name;
+    use EntityId, EntityKey, EntityActive, Sluggable, Timestampable;
 
     /**
      * @var null|string
@@ -55,31 +51,6 @@ class TextBlock
      */
     private $extra;
 
-    public function __toString()
-    {
-        return (string) $this->getName();
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param null|string $name
-     *
-     * @return TextBlock
-     */
-    public function setName(?string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
     /**
      * @return null|string
      */
@@ -91,7 +62,7 @@ class TextBlock
     /**
      * @param null|string $title
      *
-     * @return TextBlock
+     * @return Page
      */
     public function setTitle(?string $title): self
     {
@@ -111,11 +82,31 @@ class TextBlock
     /**
      * @param null|string $content
      *
-     * @return TextBlock
+     * @return Page
      */
     public function setContent(?string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param null|string $type
+     *
+     * @return Page
+     */
+    public function setType(?string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
@@ -131,28 +122,12 @@ class TextBlock
     /**
      * @param null|array $extra
      *
-     * @return TextBlock
+     * @return Page
      */
     public function setExtra(?array $extra): self
     {
         $this->extra = $extra;
 
         return $this;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param null|string $type
-     */
-    public function setType(?string $type): void
-    {
-        $this->type = $type;
     }
 }

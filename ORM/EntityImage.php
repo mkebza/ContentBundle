@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 trait EntityImage
 {
     /**
-     * @var ImageInterface|null
+     * @var null|ImageInterface
      * @ORM\ManyToOne(targetEntity="MKebza\Content\ORM\ImageInterface")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */

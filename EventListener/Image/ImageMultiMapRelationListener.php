@@ -30,7 +30,6 @@ class ImageMultiMapRelationListener implements EventSubscriber
     {
         $metadata = $event->getClassMetadata();
 
-
         if (!ClassAnalyzer::hasTrait($metadata->getName(), EntityImageMany::class) || $metadata->isMappedSuperclass) {
             return;
         }

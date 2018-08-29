@@ -1,0 +1,18 @@
+services:
+    sonata.admin.page:
+        class: MKebza\Content\Admin\PageAdmin
+        arguments:
+            - ~
+            - '%mkebza_content.entity.page%'
+            - ~
+        calls:
+            - ['setPageTypeRegistry', ['@MKebza\Content\Service\Page\PageTypeRegistry']]
+        tags:
+            -
+                name: sonata.admin
+                manager_type: orm
+                show_in_dashboard: true
+                group: 'Content'
+                label: 'Page'
+                icon: '<i class="fa fa-file-text"></i>'
+

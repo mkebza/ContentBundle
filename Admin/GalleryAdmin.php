@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Author: (c) Marek Kebza <marek@kebza.cz>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 declare(strict_types=1);
 
-
 namespace MKebza\Content\Admin;
-
 
 use Knp\Menu\ItemInterface;
 use MKebza\SonataExt\Admin\AbstractAdmin;
@@ -77,9 +82,7 @@ class GalleryAdmin extends AbstractAdmin
 
         $list->add('_action', null, ['actions' => [
             'edit' => [],
-            'delete' => []
+            'delete' => [],
         ]]);
     }
-
-
 }

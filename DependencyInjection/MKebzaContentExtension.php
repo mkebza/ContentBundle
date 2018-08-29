@@ -31,7 +31,9 @@ class MKebzaContentExtension extends Extension
 
         $container->setParameter('mkebza_content.entity.image', $config['entity']['image']);
         $container->setParameter('mkebza_content.entity.gallery', $config['entity']['gallery']);
+        $container->setParameter('mkebza_content.entity.gallery_image', $config['entity']['gallery_image']);
         $container->setParameter('mkebza_content.entity.text_block', $config['entity']['text_block']);
+        $container->setParameter('mkebza_content.entity.page', $config['entity']['page']);
 
         $loader->load('services.yaml');
 

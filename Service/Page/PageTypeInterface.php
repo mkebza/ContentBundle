@@ -9,8 +9,13 @@
 
 declare(strict_types=1);
 
-namespace MKebza\Content\Admin;
+namespace MKebza\Content\Service\Page;
 
-class GalleryImageAdmin extends ImageAdmin
+interface PageTypeInterface
 {
+    public function getAlias(): string;
+
+    public function getName(): string;
+
+    public function getFields(): array;
 }

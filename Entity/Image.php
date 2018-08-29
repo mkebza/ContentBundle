@@ -13,7 +13,6 @@ use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 use MKebza\Content\ORM\ImageInterface;
 use MKebza\SonataExt\ORM\EntityId;
-use MKebza\SonataExt\ORM\IdAble;
 use MKebza\SonataExt\ORM\Timestampable\Timestampable;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -260,7 +259,6 @@ class Image implements ImageInterface
 
         return $this;
     }
-
 
     /**
      * @return Carbon

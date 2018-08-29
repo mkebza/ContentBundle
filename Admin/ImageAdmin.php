@@ -9,7 +9,6 @@
 
 namespace MKebza\Content\Admin;
 
-use App\Entity\Accommodation\RoomImage;
 use MKebza\Content\Entity\Image;
 use MKebza\Content\ORM\EntityImage;
 use MKebza\SonataExt\Admin\AbstractAdmin;

@@ -30,5 +30,4 @@ class MKebzaContentBundle extends Bundle
             ->registerForAutoconfiguration(TextBlockTypeInterface::class)
             ->addTag('mkebza_content.text_block_type');
     }
-
 }

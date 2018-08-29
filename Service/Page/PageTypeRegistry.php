@@ -9,33 +9,32 @@
 
 declare(strict_types=1);
 
-namespace MKebza\Content\Service\TextBlock;
+namespace MKebza\Content\Service\Page;
 
-class TextBlockTypeRegistry
+class PageTypeRegistry
 {
     /**
-     * @var iterable|TextBlockTypeInterface[]
+     * @var iterable|PageTypeInterface[]
      */
     private $types;
 
     /**
-     * TextBlockTypeRegistry constructor.
-     *
      * @param $types
      */
     public function __construct(iterable $types)
     {
+        $this->types = [];
         foreach ($types as $type) {
             $this->add($type);
         }
     }
 
-    public function add(TextBlockTypeInterface $type): void
+    public function add(PageTypeInterface $type): void
     {
         $this->types[$type->getAlias()] = $type;
     }
 
-    public function get(string $alias): TextBlockTypeInterface
+    public function get(string $alias): PageTypeInterface
     {
         return $this->types[$alias];
     }

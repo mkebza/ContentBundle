@@ -1,7 +1,13 @@
 <?php
 
-declare(strict_types=1);
+/*
+ * Author: (c) Marek Kebza <marek@kebza.cz>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
+declare(strict_types=1);
 
 namespace MKebza\Content\Entity;
 
@@ -16,17 +22,16 @@ use MKebza\SonataExt\ORM\Sluggable\Sluggable;
 use MKebza\SonataExt\ORM\Timestampable\Timestampable;
 
 /**
- * Class Gallery
- * @package MKebza\Content\Entity
+ * Class Gallery.
+ *
  * @ORM\MappedSuperclass()
  */
 abstract class Gallery
 {
     use EntityId, EntityKey, EntityActive, EntityImage, Sluggable, EntityImageMany, Timestampable;
 
-
     /**
-     * @var string|null
+     * @var null|string
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
@@ -49,9 +54,10 @@ abstract class Gallery
 
     /**
      * @param null|string $description
+     *
      * @return Gallery
      */
-    public function setDescription(?string $description): Gallery
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
