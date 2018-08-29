@@ -1,4 +1,9 @@
 services:
+    _defaults:
+        bind:
+            $textBlockEntityClass: '%mkebza_content.entity.text_block%'
+            $galleryEntityClass: '%mkebza_content.entity.gallery%'
+
     MKebza\Content\Controller\:
         resource: '../../Controller'
         tags: ['controller.service_arguments']
@@ -24,3 +29,27 @@ services:
 
     MKebza\Content\EventListener\Image\MapInheritanceListener:
         tags: ['doctrine.event_subscriber']
+
+
+    MKebza\Content\Repository\TextBlockRepository:
+        arguments:
+            $registry: '@Symfony\Bridge\Doctrine\RegistryInterface'
+        tags: ['doctrine.repository_service']
+
+    MKebza\Content\Repository\GalleryRepository:
+        arguments:
+            $registry: '@Symfony\Bridge\Doctrine\RegistryInterface'
+        tags: ['doctrine.repository_service']
+
+
+    MKebza\Content\Twig\Extension\TextBlockExtension:
+        tags: ['twig.extension']
+
+    MKebza\Content\Twig\Runtime\TextBlockRuntime:
+        arguments:
+            $repository: '@MKebza\Content\Repository\TextBlockRepository'
+        tags: ['twig.runtime']
+
+    MKebza\Content\Service\TextBlock\TextBlockTypeRegistry:
+        arguments:
+            $types: !tagged mkebza_content.text_block_type

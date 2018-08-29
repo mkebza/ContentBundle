@@ -5,6 +5,8 @@ services:
             - ~
             - App\Entity\Content\TextBlock
             - ~
+        calls:
+            - ['setTextBlockTypeRegistry', ['@MKebza\Content\Service\TextBlock\TextBlockTypeRegistry']]
         tags:
             -
                 name: sonata.admin

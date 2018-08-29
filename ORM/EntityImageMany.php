@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace MKebza\Content\ORM;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 trait EntityImageMany
 {
     /**
@@ -19,7 +21,7 @@ trait EntityImageMany
     protected $images;
 
     /**
-     * @return Image
+     * @return Image[]|ArrayCollection
      */
     public function getImages(): iterable
     {
@@ -43,7 +45,7 @@ trait EntityImageMany
     /**
      * @param Image $image
      *
-     * @return Room
+     * @return
      */
     public function addImage(ImageInterface $image): self
     {

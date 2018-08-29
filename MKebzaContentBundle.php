@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace MKebza\Content;
 
 use MKebza\Content\DependencyInjection\CompilerPass\AutoResolveTargetEntitiesPass;
+use MKebza\Content\Service\TextBlock\TextBlockTypeInterface;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -24,5 +25,10 @@ class MKebzaContentBundle extends Bundle
             new AutoResolveTargetEntitiesPass(),
             PassConfig::TYPE_BEFORE_OPTIMIZATION,
             100);
+
+        $container
+            ->registerForAutoconfiguration(TextBlockTypeInterface::class)
+            ->addTag('mkebza_content.text_block_type');
     }
+
 }

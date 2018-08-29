@@ -53,7 +53,7 @@ class ImageRuntime implements RuntimeExtensionInterface
             return $default;
         }
 
-        return '/image/'.$this->helper->asset($obj, 'image', null);
+        return '/upload/'.$this->helper->asset($obj, 'image', null);
     }
 
     /**

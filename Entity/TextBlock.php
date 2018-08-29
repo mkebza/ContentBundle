@@ -39,6 +39,12 @@ class TextBlock
     private $content;
 
     /**
+     * @var string|null
+     * @ORM\Column(type="string", nullable=true, length=100)
+     */
+    private $type;
+
+    /**
      * @var array|null
      * @ORM\Column(type="json", nullable=true)
      */
@@ -118,6 +124,22 @@ class TextBlock
         $this->extra = $extra;
 
         return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param null|string $type
+     */
+    public function setType(?string $type): void
+    {
+        $this->type = $type;
     }
 
     public function __toString()
