@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 trait EntityImageMany
 {
     /**
-     * @var Image
+     * @var Image[]|ArrayCollection
      */
     protected $images;
 
