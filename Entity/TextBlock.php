@@ -14,6 +14,8 @@ namespace MKebza\Content\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use MKebza\SonataExt\ORM\EntityId;
 use MKebza\SonataExt\ORM\EntityKey;
+use MKebza\SonataExt\ORM\Logger\Loggable;
+use MKebza\SonataExt\ORM\Logger\LoggableInterface;
 use MKebza\SonataExt\ORM\Timestampable\Timestampable;
 
 /**
@@ -21,9 +23,9 @@ use MKebza\SonataExt\ORM\Timestampable\Timestampable;
  *
  * @ORM\MappedSuperclass()
  */
-class TextBlock
+class TextBlock implements LoggableInterface
 {
-    use EntityId, EntityKey, Timestampable;
+    use EntityId, EntityKey, Loggable, Timestampable;
 
     /**
      * @var null|string

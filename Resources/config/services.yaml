@@ -16,6 +16,10 @@ services:
             $path: '%kernel.project_dir%/assets/fixture/'
         tags: ['nelmio_alice.faker.provider']
 
+    MKebza\Content\Service\Page\RouteLoader:
+        arguments:
+            $repository: '@MKebza\Content\Repository\PageRepository'
+        public: true
 
     MKebza\Content\Twig\Extension\ImageExtension:
         tags: ['twig.extension']

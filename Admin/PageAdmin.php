@@ -37,6 +37,25 @@ class PageAdmin extends AbstractAdmin
         $this->pageTypeRegistry = $pageTypeRegistry;
     }
 
+    public function getTabMenuMap(): array
+    {
+        $baseLevel = [$this->createLogTabMenuItem()];
+        $baseWithReturn = array_merge([$this->createParentTabMenuItem()], $baseLevel);
+
+        return [
+            PageAdmin::class => [
+                [
+                    'actions' => ['edit'],
+                    'items' => [$this->createLogTabMenuItem()]
+                ]
+            ],
+            'sonata.admin.page.log' => [
+                ['actions' => ['list'], 'items' => $baseWithReturn]
+            ]
+        ];
+    }
+
+
     protected function configureFormFields(FormMapper $form)
     {
         /** @var Page $block */

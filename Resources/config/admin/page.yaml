@@ -7,6 +7,7 @@ services:
             - ~
         calls:
             - ['setPageTypeRegistry', ['@MKebza\Content\Service\Page\PageTypeRegistry']]
+            - ['addChild', ['@sonata.admin.page.log', 'reference']]
         tags:
             -
                 name: sonata.admin
@@ -15,4 +16,16 @@ services:
                 group: 'Content'
                 label: 'Page'
                 icon: '<i class="fa fa-file-text"></i>'
+
+    sonata.admin.page.log:
+        class: MKebza\Content\Admin\PageLogAdmin
+        arguments:
+            - ~
+            - MKebza\Content\Entity\PageLog
+            - ~
+        tags:
+            -
+                name: sonata.admin
+                manager_type: orm
+                show_in_dashboard: false
 

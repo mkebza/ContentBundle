@@ -15,6 +15,9 @@ use Doctrine\ORM\Mapping as ORM;
 use MKebza\SonataExt\ORM\EntityActive;
 use MKebza\SonataExt\ORM\EntityId;
 use MKebza\SonataExt\ORM\EntityKey;
+use MKebza\SonataExt\ORM\Logger\Loggable;
+use MKebza\SonataExt\ORM\Logger\LoggableInterface;
+use MKebza\SonataExt\ORM\Sluggable\EntitySluggable;
 use MKebza\SonataExt\ORM\Sluggable\Sluggable;
 use MKebza\SonataExt\ORM\Timestampable\Timestampable;
 
@@ -23,9 +26,9 @@ use MKebza\SonataExt\ORM\Timestampable\Timestampable;
  *
  * @ORM\MappedSuperclass()
  */
-class Page
+class Page implements LoggableInterface
 {
-    use EntityId, EntityKey, EntityActive, Sluggable, Timestampable;
+    use EntityId, EntityKey, EntityActive, EntitySluggable, Loggable, Timestampable;
 
     /**
      * @var null|string

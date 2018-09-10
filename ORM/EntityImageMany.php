@@ -36,6 +36,7 @@ trait EntityImageMany
     public function setImages(iterable $images): self
     {
         foreach ($images as $image) {
+            $image->setReference($this);
             $this->addImage($image);
         }
 
