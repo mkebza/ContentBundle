@@ -23,7 +23,7 @@
        "vich/uploader-bundle": "^1.8",
        "oneup/flysystem-bundle": "^3.0",
        "liip/imagine-bundle": "^2.1",
-       "mkebza/sitemap-bundle": "^1.*"
+       "mkebza/sitemap-bundle": "^1.0"
     },
     "require-dev": {
       "symfony/phpunit-bridge": "^4.1"
