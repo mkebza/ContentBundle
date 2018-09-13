@@ -19,7 +19,6 @@ use MKebza\SonataExt\ORM\EntityActive;
 use MKebza\SonataExt\ORM\EntityId;
 use MKebza\SonataExt\ORM\EntityKey;
 use MKebza\SonataExt\ORM\Sluggable\EntitySluggable;
-use MKebza\SonataExt\ORM\Sluggable\Sluggable;
 use MKebza\SonataExt\ORM\Timestampable\Timestampable;
 
 /**

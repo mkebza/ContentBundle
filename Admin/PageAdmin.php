@@ -43,18 +43,17 @@ class PageAdmin extends AbstractAdmin
         $baseWithReturn = array_merge([$this->createParentTabMenuItem()], $baseLevel);
 
         return [
-            PageAdmin::class => [
+            self::class => [
                 [
                     'actions' => ['edit'],
-                    'items' => [$this->createLogTabMenuItem()]
-                ]
+                    'items' => [$this->createLogTabMenuItem()],
+                ],
             ],
             'sonata.admin.page.log' => [
-                ['actions' => ['list'], 'items' => $baseWithReturn]
-            ]
+                ['actions' => ['list'], 'items' => $baseWithReturn],
+            ],
         ];
     }
-
 
     protected function configureFormFields(FormMapper $form)
     {

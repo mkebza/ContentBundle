@@ -9,10 +9,9 @@
 
 declare(strict_types=1);
 
-namespace MKebza\Content\Admin;
+namespace MKebza\Content\Service\Image;
 
-use MKebza\SonataExt\Admin\LogReferenceAdmin;
-
-class PageLogAdmin extends LogReferenceAdmin
+interface AdminImageInterface
 {
+    public function getImageFieldsMap(): array;
 }

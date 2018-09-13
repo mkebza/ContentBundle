@@ -10,6 +10,9 @@ services:
         resource: '../../Controller'
         tags: ['controller.service_arguments']
 
+    MKebza\Content\Service\Image\AdminImageExtension:
+        tags:
+            - { name: 'sonata.admin.extension' }
 
     MKebza\Content\Service\Fixture\Provider\ImageFileProvider:
         arguments:

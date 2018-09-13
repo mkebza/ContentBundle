@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Author: (c) Marek Kebza <marek@kebza.cz>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 declare(strict_types=1);
 
-
 namespace MKebza\Content\Service\Page;
-
 
 use App\Entity\Content\Page;
 use MKebza\Content\Controller\Page\ViewController;
@@ -38,7 +43,6 @@ class RouteLoader
                 new Route('/page/'.$page->getSlug(), ['controller' => ViewController::class])
             );
         }
-
 
         return $collection;
     }

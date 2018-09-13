@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace MKebza\Content;
 
+use MKebza\Content\DependencyInjection\CompilerPass\AddAdminImageExtensionPass;
 use MKebza\Content\DependencyInjection\CompilerPass\AutoResolveTargetEntitiesPass;
 use MKebza\Content\Service\TextBlock\TextBlockTypeInterface;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
@@ -25,6 +26,8 @@ class MKebzaContentBundle extends Bundle
             new AutoResolveTargetEntitiesPass(),
             PassConfig::TYPE_BEFORE_OPTIMIZATION,
             100);
+
+        $container->addCompilerPass(new AddAdminImageExtensionPass());
 
         $container
             ->registerForAutoconfiguration(TextBlockTypeInterface::class)

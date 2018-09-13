@@ -18,7 +18,6 @@ use MKebza\SonataExt\ORM\EntityKey;
 use MKebza\SonataExt\ORM\Logger\Loggable;
 use MKebza\SonataExt\ORM\Logger\LoggableInterface;
 use MKebza\SonataExt\ORM\Sluggable\EntitySluggable;
-use MKebza\SonataExt\ORM\Sluggable\Sluggable;
 use MKebza\SonataExt\ORM\Timestampable\Timestampable;
 
 /**
