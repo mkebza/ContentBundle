@@ -20,7 +20,7 @@ class PageExtension extends AbstractExtension
     public function getFunctions()
     {
         return [
-            new TwigFunction('page_get', [PageRuntime::class, 'get']),
+            new TwigFunction('content_page', [PageRuntime::class, 'get']),
         ];
     }
 }

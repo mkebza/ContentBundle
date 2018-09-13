@@ -20,7 +20,7 @@ class TextBlockExtension extends AbstractExtension
     public function getFunctions()
     {
         return [
-            new TwigFunction('text_block', [TextBlockRuntime::class, 'get']),
+            new TwigFunction('content_block', [TextBlockRuntime::class, 'get']),
         ];
     }
 }

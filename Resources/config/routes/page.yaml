@@ -1,7 +1,3 @@
 page_view:
     path: /page/{slug}
     controller: MKebza\Content\Controller\Page\ViewController
-
-page_routes:
-    resource: 'MKebza\Content\Service\Page\RouteLoader:load'
-    type: service
