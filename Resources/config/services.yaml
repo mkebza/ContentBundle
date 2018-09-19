@@ -72,3 +72,16 @@ services:
 
     MKebza\Content\Twig\Runtime\PageRuntime:
         tags: ['twig.runtime']
+
+    MKebza\Content\Service\VichUploader\ImageDirectoryNamer:
+        public: true # Because of vich uploader
+
+    MKebza\Content\Service\VichUploader\ImageNamer:
+        public: true # Because of vich uploader
+        arguments:
+            $slugify: '@slugify'
+
+
+    vich_uploader.namer_subdir:
+        class: Vich\UploaderBundle\Naming\SubdirDirectoryNamer
+        public: true
