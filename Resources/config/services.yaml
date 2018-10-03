@@ -82,6 +82,13 @@ services:
             $slugify: '@slugify'
 
 
+    vich_uploader.storage.flysystem_overwriting:
+        class: MKebza\Content\Service\VichUploader\OverwritingFlysystemStorage
+        public: true
+        arguments:
+            - '@vich_uploader.property_mapping_factory'
+            - '@oneup_flysystem.mount_manager'
+
     vich_uploader.namer_subdir:
         class: Vich\UploaderBundle\Naming\SubdirDirectoryNamer
         public: true
