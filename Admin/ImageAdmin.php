@@ -12,6 +12,7 @@ namespace MKebza\Content\Admin;
 use MKebza\Content\Entity\Image;
 use MKebza\Content\ORM\EntityImage;
 use MKebza\SonataExt\Admin\AbstractAdmin;
+use MKebza\SonataExt\Utils\ClassAnalyzer;
 use MKebza\SonataExt\Utils\FilesizeFormatter;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -91,7 +92,11 @@ class ImageAdmin extends AbstractAdmin
 
     public function prePersist($object)
     {
-        if (0 === $object->getReference()->getImages()->count()) {
+        if (
+                null !== $object->getReference() &&
+                0 === $object->getReference()->getImages()->count() &&
+                ClassAnalyzer::hasTrait($object,EntityImage::class)
+        ) {
             $object->getReference()->setImage($object);
         }
     }
