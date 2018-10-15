@@ -13,6 +13,7 @@ namespace MKebza\Content;
 
 use MKebza\Content\DependencyInjection\CompilerPass\AddAdminImageExtensionPass;
 use MKebza\Content\DependencyInjection\CompilerPass\AutoResolveTargetEntitiesPass;
+use MKebza\Content\Service\Page\PageTypeInterface;
 use MKebza\Content\Service\TextBlock\TextBlockTypeInterface;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -32,5 +33,9 @@ class MKebzaContentBundle extends Bundle
         $container
             ->registerForAutoconfiguration(TextBlockTypeInterface::class)
             ->addTag('mkebza_content.text_block_type');
+
+        $container
+            ->registerForAutoconfiguration(PageTypeInterface::class)
+            ->addTag('mkebza_content.page_type');
     }
 }

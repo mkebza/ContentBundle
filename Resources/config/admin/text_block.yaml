@@ -6,6 +6,7 @@ services:
             - App\Entity\Content\TextBlock
             - ~
         calls:
+            - ['addChild', ['@sonata.admin.text_block.log', 'reference']]
             - ['setTextBlockTypeRegistry', ['@MKebza\Content\Service\TextBlock\TextBlockTypeRegistry']]
         tags:
             -
@@ -16,3 +17,14 @@ services:
                 label: 'Block'
                 icon: '<i class="fa fa-file-text"></i>'
 
+    sonata.admin.text_block.log:
+        class: MKebza\SonataExt\Admin\LogReferenceAdmin
+        arguments:
+            - ~
+            - MKebza\Content\Entity\TextBlockLog
+            - ~
+        tags:
+            -
+                name: sonata.admin
+                manager_type: orm
+                show_in_dashboard: false

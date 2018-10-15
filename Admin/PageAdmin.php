@@ -110,6 +110,7 @@ class PageAdmin extends AbstractAdmin
         $list->add('_action', null, [
             'actions' => [
                 'edit' => [],
+                'frontend_view' => ['template' => '@MKebzaContent/page/list/action_frontend_view.html.twig'],
                 'delete' => [],
             ],
         ]);

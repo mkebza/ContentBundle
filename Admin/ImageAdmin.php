@@ -95,7 +95,7 @@ class ImageAdmin extends AbstractAdmin
         if (
                 null !== $object->getReference() &&
                 0 === $object->getReference()->getImages()->count() &&
-                ClassAnalyzer::hasTrait($object,EntityImage::class)
+                ClassAnalyzer::hasTrait($object, EntityImage::class)
         ) {
             $object->getReference()->setImage($object);
         }
@@ -127,10 +127,11 @@ class ImageAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list)
     {
         $list
+            ->add('image', null, ['template' => '@MKebzaContent/image/list/preview.html.twig'])
             ->addIdentifier('name')
             ->add('_action', null, ['actions' => [
                 'edit' => [],
-                'delete' => []
+                'delete' => [],
             ]])
         ;
     }

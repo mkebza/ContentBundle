@@ -81,6 +81,11 @@ services:
         arguments:
             $slugify: '@slugify'
 
+    MKebza\Content\Service\Sitemap\PageGenerator:
+        arguments:
+            $router: '@router'
+            $repository: '@MKebza\Content\Repository\PageRepository'
+        tags: ['mkebza_sitemap.generator']
 
     vich_uploader.storage.flysystem_overwriting:
         class: MKebza\Content\Service\VichUploader\OverwritingFlysystemStorage
