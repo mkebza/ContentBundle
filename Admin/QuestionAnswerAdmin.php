@@ -21,6 +21,24 @@ class QuestionAnswerAdmin extends AbstractAdmin
     protected $baseRoutePattern = 'question-answer';
     protected $baseRouteName = 'question_answer';
 
+    public function getTabMenuMap(): array
+    {
+        $baseLevel = [$this->createLogTabMenuItem()];
+        $baseWithReturn = array_merge([$this->createParentTabMenuItem()], $baseLevel);
+
+        return [
+            self::class => [
+                [
+                    'actions' => ['edit'],
+                    'items' => [$this->createLogTabMenuItem()],
+                ],
+            ],
+            'sonata.admin.question_answer.log' => [
+                ['actions' => ['list'], 'items' => $baseWithReturn],
+            ],
+        ];
+    }
+
     protected function configureFormFields(FormMapper $form)
     {
         $form
@@ -38,7 +56,10 @@ class QuestionAnswerAdmin extends AbstractAdmin
     {
         $list
             ->addIdentifier('question')
+            ->add('categories', null, ['associated_property' => 'name'])
             ->add('active', 'boolean', ['editable' => true])
+            ->add('priority')
+            ->add('created')
             ->add('_action', null, [
                 'actions' => [
                     'edit' => [],

@@ -6,7 +6,7 @@ services:
             $galleryEntityClass: '%mkebza_content.entity.gallery%'
             $pageEntityClass: '%mkebza_content.entity.page%'
             $questionAnswerEntityClass: '%mkebza_content.entity.question_answer%'
-            $questionAnswerCategoryEntityClass: '%mkebza_content.entity.question_answer%'
+            $questionAnswerCategoryEntityClass: '%mkebza_content.entity.question_answer_category%'
 
     MKebza\Content\Controller\:
         resource: '../../Controller'

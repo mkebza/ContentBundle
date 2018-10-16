@@ -17,6 +17,8 @@ use Doctrine\ORM\Mapping as ORM;
 use MKebza\SonataExt\ORM\EntityActive;
 use MKebza\SonataExt\ORM\EntityId;
 use MKebza\SonataExt\ORM\EntityPrioritizable;
+use MKebza\SonataExt\ORM\Logger\Loggable;
+use MKebza\SonataExt\ORM\Logger\LoggableInterface;
 use MKebza\SonataExt\ORM\Timestampable\Timestampable;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -25,13 +27,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\MappedSuperclass()
  */
-class QuestionAnswer
+class QuestionAnswer implements LoggableInterface
 {
-    use EntityId, EntityActive, EntityPrioritizable, Timestampable;
+    use EntityId, EntityActive, EntityPrioritizable, Timestampable, Loggable;
 
     /**
      * @var Collection|QuestionAnswerCategory[]
-     * @ORM\ManyToMany(targetEntity="MKebza\Content\Entity\QuestionAnswerCategory")
+     * @ORM\ManyToMany(targetEntity="MKebza\Content\Entity\QuestionAnswerCategory", inversedBy="questions")
      */
     protected $categories;
 

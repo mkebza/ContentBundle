@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace MKebza\Content\DependencyInjection\CompilerPass;
 
+use MKebza\Content\Entity\QuestionAnswer;
+use MKebza\Content\Entity\QuestionAnswerCategory;
 use MKebza\Content\ORM\ImageInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -24,6 +26,18 @@ class AutoResolveTargetEntitiesPass implements CompilerPassInterface
         $def->addMethodCall('addResolveTargetEntity', [
             ImageInterface::class,
             $container->getParameter('mkebza_content.entity.image'),
+            [],
+        ]);
+
+        $def->addMethodCall('addResolveTargetEntity', [
+            QuestionAnswer::class,
+            $container->getParameter('mkebza_content.entity.question_answer'),
+            [],
+        ]);
+
+        $def->addMethodCall('addResolveTargetEntity', [
+            QuestionAnswerCategory::class,
+            $container->getParameter('mkebza_content.entity.question_answer_category'),
             [],
         ]);
 

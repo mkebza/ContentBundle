@@ -2,11 +2,11 @@ services:
     sonata.admin.question_answer:
         class: MKebza\Content\Admin\QuestionAnswerAdmin
         arguments:
-        - ~
-        - '%mkebza_content.entity.question_answer%'
-        - ~
-        #        calls:
-        #            - ['addChild', ['@sonata.admin.page.log', 'reference']]
+            - ~
+            - '%mkebza_content.entity.question_answer%'
+            - ~
+        calls:
+            - ['addChild', ['@sonata.admin.question_answer.log', 'reference']]
         tags:
             -
                 name: sonata.admin
@@ -16,6 +16,18 @@ services:
                 label: 'QA'
                 icon: '<i class="fa fa-file-text"></i>'
 
+    sonata.admin.question_answer.log:
+        class: MKebza\SonataExt\Admin\LogReferenceAdmin
+        arguments:
+            - ~
+            - MKebza\Content\Entity\QuestionAnswerLog
+            - ~
+        tags:
+            -
+                name: sonata.admin
+                manager_type: orm
+                show_in_dashboard: false
+
 
     sonata.admin.question_answer_category:
         class: MKebza\Content\Admin\QuestionAnswerCategoryAdmin
@@ -23,8 +35,6 @@ services:
             - ~
             - '%mkebza_content.entity.question_answer_category%'
             - ~
-#        calls:
-#            - ['addChild', ['@sonata.admin.page.log', 'reference']]
         tags:
             -
                 name: sonata.admin
@@ -33,16 +43,4 @@ services:
                 group: 'Content'
                 label: 'QA - Category'
                 icon: '<i class="fa fa-file-text"></i>'
-
-#    sonata.admin.page.log:
-#        class: MKebza\SonataExt\Admin\LogReferenceAdmin
-#        arguments:
-#            - ~
-#            - MKebza\Content\Entity\PageLog
-#            - ~
-#        tags:
-#            -
-#                name: sonata.admin
-#                manager_type: orm
-#                show_in_dashboard: false
 

@@ -34,6 +34,8 @@ class QuestionAnswerCategoryAdmin extends AbstractAdmin
     {
         $list
             ->addIdentifier('name')
+            ->add('priority')
+            ->add('created')
             ->add('_action', null, [
                 'actions' => [
                     'edit' => [],
