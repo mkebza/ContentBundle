@@ -5,6 +5,8 @@ services:
             $textBlockEntityClass: '%mkebza_content.entity.text_block%'
             $galleryEntityClass: '%mkebza_content.entity.gallery%'
             $pageEntityClass: '%mkebza_content.entity.page%'
+            $questionAnswerEntityClass: '%mkebza_content.entity.question_answer%'
+            $questionAnswerCategoryEntityClass: '%mkebza_content.entity.question_answer%'
 
     MKebza\Content\Controller\:
         resource: '../../Controller'
@@ -46,6 +48,16 @@ services:
         tags: ['doctrine.repository_service']
 
     MKebza\Content\Repository\PageRepository:
+        arguments:
+            $registry: '@Symfony\Bridge\Doctrine\RegistryInterface'
+        tags: ['doctrine.repository_service']
+
+    MKebza\Content\Repository\QuestionAnswerRepository:
+        arguments:
+            $registry: '@Symfony\Bridge\Doctrine\RegistryInterface'
+        tags: ['doctrine.repository_service']
+
+    MKebza\Content\Repository\QuestionAnswerCategoryRepository:
         arguments:
             $registry: '@Symfony\Bridge\Doctrine\RegistryInterface'
         tags: ['doctrine.repository_service']

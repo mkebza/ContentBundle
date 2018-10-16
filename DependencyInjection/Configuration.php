@@ -29,6 +29,7 @@ class Configuration implements ConfigurationInterface
                         ->booleanNode('gallery')->defaultTrue()->end()
                         ->booleanNode('text_block')->defaultTrue()->end()
                         ->booleanNode('page')->defaultTrue()->end()
+                        ->booleanNode('question_answer')->defaultTrue()->end()
                     ->end()
                 ->end()
                 ->arrayNode('entity')
@@ -39,6 +40,8 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('gallery_image')->defaultValue('App\\Entity\\GalleryImage')->end()
                         ->scalarNode('text_block')->defaultValue('App\\Entity\\TextBlock')->end()
                         ->scalarNode('page')->defaultValue('App\\Entity\\Page')->end()
+                        ->scalarNode('question_answer')->defaultValue('App\\Entity\\QuestionAnswer')->end()
+                        ->scalarNode('question_answer_category')->defaultValue('App\\Entity\\QuestionAnswerCategory')->end()
                     ->end()
                 ->end()
 
