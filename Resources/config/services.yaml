@@ -30,6 +30,12 @@ services:
             $imagineCache: '@Liip\ImagineBundle\Imagine\Cache\CacheManager'
         tags: ['twig.runtime']
 
+    MKebza\Content\Service\Image\Imager:
+        arguments:
+            $helper: '@Vich\UploaderBundle\Templating\Helper\UploaderHelper'
+            $imagineCache: '@Liip\ImagineBundle\Imagine\Cache\CacheManager'
+
+
     MKebza\Content\EventListener\Image\ImageMultiMapRelationListener:
         tags: ['doctrine.event_subscriber']
 
