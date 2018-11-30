@@ -16,7 +16,7 @@ class TextBlockTypeRegistry
     /**
      * @var iterable|TextBlockTypeInterface[]
      */
-    private $types;
+    private $types = [];
 
     /**
      * TextBlockTypeRegistry constructor.

@@ -23,7 +23,6 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 class ImageAdmin extends AbstractAdmin
 {
     protected $datagridValues = [
-        // name of the ordered field (default = the model's id field, if any)
         '_sort_by' => 'created',
     ];
 
@@ -57,13 +56,6 @@ class ImageAdmin extends AbstractAdmin
             ->getContainer()
             ->get('liip_imagine.cache.manager')
             ->getBrowserPath($imageUrl, 'admin_preview_big');
-
-        $description = sprintf(
-            "Size: %sx%spx\nFilesize: %s",
-            $object->getWidth(),
-            $object->getHeight(),
-            $object->getSize()
-        );
 
         // if for singe image behavior
         $primary = false;
@@ -116,19 +108,30 @@ class ImageAdmin extends AbstractAdmin
             ->with(null);
 
         if ($this->isCreating()) {
-            $form->add('image', VichImageType::class, ['attr' => ['class' => 'image-multi-tab-input-file']]);
+            $form->add('image', VichImageType::class, [
+                'label' => 'Image.field.image',
+                'attr' => ['class' => 'image-multi-tab-input-file']]
+            );
         }
 
         $form
-            ->add('name', null, ['attr' => ['class' => 'image-multi-tab-input-name']])
+            ->add('name', null, [
+                'label' => 'Image.field.name',
+                'attr' => ['class' => 'image-multi-tab-input-name']
+            ])
             ->ifEnd();
     }
 
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->add('image', null, ['template' => '@MKebzaContent/image/list/preview.html.twig'])
-            ->addIdentifier('name')
+            ->add('image', null, [
+                'label' => 'Image.field.image',
+                'template' => '@MKebzaContent/image/list/preview.html.twig'
+            ])
+            ->addIdentifier('name', null, [
+                'label' => 'Image.field.name',
+            ])
             ->add('_action', null, ['actions' => [
                 'edit' => [],
                 'delete' => [],

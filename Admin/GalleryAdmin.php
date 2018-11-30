@@ -28,56 +28,46 @@ class GalleryAdmin extends AbstractAdmin
 
         $form
             ->with(null)
-                ->add('name')
-                ->add('description')
-                ->add('active')
+                ->add('name', null, ['label' => 'Gallery.field.name'])
+                ->add('description', null, ['label' => 'Gallery.field.description'])
+                ->add('active', null, ['label' => 'Gallery.field.active'])
             ->end();
 
         if ($this->isGrantedSymfony('ROLE_DEVELOPER')) {
             $form
                 ->with('Developer', ['box_class' => 'box box-danger'])
-                    ->add('key')
+                    ->add('key', null, ['label' => 'Gallery.field.key'])
                 ->end()
             ;
         }
     }
 
-    protected function configureTabMenu(ItemInterface $menu, $action, AdminInterface $childAdmin = null)
+    public function getTabMenuMap(): array
     {
-        // For root admin, we are at listing skip
-        if (!$childAdmin && !in_array($action, ['edit', 'show'], true)) {
-            return;
-        }
+        $baseLevel = [
+            $this->createTabMenuItem('Gallery.menu.images', 'admin_gallery_image_list', ['id'], 'th'),
+        ];
 
-        $currentAdmin = $this->getCurrentLeafChildAdmin();
+        $baseLevelWithParent = array_merge(
+            [$this->createParentTabMenuItem()],
+            $baseLevel
+        );
 
-        $admin = $this->isChild() ? $this->getParent() : $this;
-        $id = $admin->getRequest()->get('id');
+        return [
+            self::class => [['actions' => ['edit'], 'items' => $baseLevel]],
 
-        if (null !== $currentAdmin && $this->isGranted('EDIT')) {
-            $menu
-                ->addChild('Parent', [
-                    'uri' => $admin->generateUrl('edit', ['id' => $id]),
-                ])
-                ->setAttribute('icon', 'fa fa-chevron-left');
-        }
-
-        if ($this->isGranted('LIST')) {
-            $menu
-                ->addChild('Images', [
-                    'route' => 'admin_gallery_image_list',
-                    'routeParameters' => ['id' => $id],
-                ])
-                ->setAttribute('icon', 'fa fa-image');
-        }
+            'sonata.admin.gallery.image' => [
+                ['actions' => ['list', 'edit', 'create'], 'items' => $baseLevelWithParent]
+            ],
+        ];
     }
 
     protected function configureListFields(ListMapper $list)
     {
-        $list->addIdentifier('name');
+        $list->addIdentifier('name', null, ['label' => 'Gallery.field.name']);
 
         if ($this->isGrantedSymfony('ROLE_DEVELOPER')) {
-            $list->add('key');
+            $list->add('key', null, ['label' => 'Gallery.field.key']);
         }
 
         $list->add('_action', null, ['actions' => [

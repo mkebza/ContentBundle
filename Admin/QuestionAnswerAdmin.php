@@ -43,11 +43,11 @@ class QuestionAnswerAdmin extends AbstractAdmin
     {
         $form
             ->with(null)
-                ->add('question', TextareaType::class)
-                ->add('answer', TextareaType::class)
-                ->add('categories')
-                ->add('priority')
-                ->add('active')
+                ->add('question', TextareaType::class, ['label' => 'QuestionAnswer.field.question'])
+                ->add('answer', TextareaType::class, ['label' => 'QuestionAnswer.field.answer'])
+                ->add('categories', null, ['label' => 'QuestionAnswer.field.categories'])
+                ->add('priority', null, ['label' => 'QuestionAnswer.field.priority'])
+                ->add('active', null, ['label' => 'QuestionAnswer.field.active'])
             ->end()
         ;
     }
@@ -55,11 +55,17 @@ class QuestionAnswerAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->addIdentifier('question')
-            ->add('categories', null, ['associated_property' => 'name'])
-            ->add('active', 'boolean', ['editable' => true])
-            ->add('priority')
-            ->add('created')
+            ->addIdentifier('question', null, ['label' => 'QuestionAnswer.field.question'])
+            ->add('categories', null, [
+                'label' => 'QuestionAnswer.field.categories',
+                'associated_property' => 'name'
+            ])
+            ->add('active', 'boolean', [
+                'label' => 'QuestionAnswer.field.active',
+                'editable' => true
+            ])
+            ->add('priority', null, ['label' => 'QuestionAnswer.field.priority'])
+            ->add('created', null, ['label' => 'QuestionAnswer.field.created'])
             ->add('_action', null, [
                 'actions' => [
                     'edit' => [],

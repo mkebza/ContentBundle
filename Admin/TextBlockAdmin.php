@@ -61,24 +61,25 @@ class TextBlockAdmin extends AbstractAdmin
         $block = $this->getSubject();
         $form
             ->with(null)
-                ->add('name');
+                ->add('name', null, ['label' => 'TextBlock.field.name']);
 
-        if ($this->isCreating()) {
+        if ($this->isCreating() && !$this->textBlockTypeRegistry->isEmpty()) {
             $form->add('type', ChoiceType::class, [
+                'label' => 'TextBlock.field.type',
                 'choices' => ['----' => null] + $this->textBlockTypeRegistry->getChoices(),
             ]);
         }
 
         $form
-                ->add('title')
-                ->add('content')
+                ->add('title', null, ['label' => 'TextBlock.field.title'])
+                ->add('content', null, ['label' => 'TextBlock.field.content'])
             ->end();
 
         if ($block->getType()) {
             $type = $this->textBlockTypeRegistry->get($block->getType());
 
             $form
-                ->with('Extra')
+                ->with('TextBlock.panel.extra')
                     ->add('extra', ImmutableArrayType::class, [
                         'label' => false,
                         'keys' => $type->getFields($block),
@@ -88,8 +89,8 @@ class TextBlockAdmin extends AbstractAdmin
 
         if ($this->isGrantedSymfony('ROLE_DEVELOPER')) {
             $form
-                ->with('Developer', ['box_class' => 'box box-danger'])
-                    ->add('key')
+                ->with('TextBlock.panel.developer', ['box_class' => 'box box-danger'])
+                    ->add('key', null, ['label' => 'TextBlock.field.key'])
                 ->end();
         }
 
@@ -99,12 +100,12 @@ class TextBlockAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->addIdentifier('name');
+            ->addIdentifier('name', null, ['label' => 'TextBlock.field.name']);
 
         if ($this->isGrantedSymfony('ROLE_DEVELOPER')) {
             $list
-                ->add('key')
-                ->add('type');
+                ->add('key', null, ['label' => 'TextBlock.field.key'])
+                ->add('type', null, ['label' => 'TextBlock.field.type']);
         }
 
         $list->add('_action', null, [

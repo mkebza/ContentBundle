@@ -61,25 +61,26 @@ class PageAdmin extends AbstractAdmin
         $block = $this->getSubject();
         $form
             ->with(null)
-                ->add('name');
+                ->add('name', null, ['label' => 'Page.field.name']);
 
         if ($this->isCreating() && !$this->pageTypeRegistry->isEmpty()) {
             $form->add('type', ChoiceType::class, [
+                'label' => 'Page.field.type',
                 'choices' => ['----' => null] + $this->pageTypeRegistry->getChoices(),
             ]);
         }
 
         $form
-                ->add('active')
-                ->add('title')
-                ->add('content')
+                ->add('active', null, ['label' => 'Page.field.active'])
+                ->add('title', null, ['label' => 'Page.field.title'])
+                ->add('content', null, ['label' => 'Page.field.content'])
             ->end();
 
         if ($block->getType()) {
             $type = $this->pageTypeRegistry->get($block->getType());
 
             $form
-                ->with('Extra')
+                ->with('Page.panel.extra')
                     ->add('extra', ImmutableArrayType::class, [
                         'label' => false,
                         'keys' => $type->getFields($block),
@@ -89,7 +90,7 @@ class PageAdmin extends AbstractAdmin
 
         if ($this->isGrantedSymfony('ROLE_DEVELOPER')) {
             $form
-                ->with('Developer', ['box_class' => 'box box-danger'])
+                ->with('Page.panel.developer', ['box_class' => 'box box-danger'])
                     ->add('key')
                 ->end();
         }
@@ -98,13 +99,16 @@ class PageAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->addIdentifier('name')
-            ->add('active', null, ['editable' => true]);
+            ->addIdentifier('name', null, ['label' => 'Page.field.name'])
+            ->add('active', null, [
+                'editable' => true,
+                'label' => 'Page.field.active'
+            ]);
 
         if ($this->isGrantedSymfony('ROLE_DEVELOPER')) {
             $list
-                ->add('key')
-                ->add('type');
+                ->add('key', null, ['label' => 'Page.field.key'])
+                ->add('type', null, ['label' => 'Page.field.type']);
         }
 
         $list->add('_action', null, [

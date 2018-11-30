@@ -24,8 +24,8 @@ class QuestionAnswerCategoryAdmin extends AbstractAdmin
     {
         $form
             ->with(null)
-                ->add('name')
-                ->add('priority')
+                ->add('name', null, ['label' => 'QuestionAnswerCategory.field.name'])
+                ->add('priority', null, ['label' => 'QuestionAnswerCategory.field.priority'])
             ->end()
         ;
     }
@@ -33,9 +33,9 @@ class QuestionAnswerCategoryAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->addIdentifier('name')
-            ->add('priority')
-            ->add('created')
+            ->addIdentifier('name', null, ['label' => 'QuestionAnswerCategory.field.name'])
+            ->add('priority', null, ['label' => 'QuestionAnswerCategory.field.priority'])
+            ->add('created', null, ['label' => 'QuestionAnswerCategory.field.created'])
             ->add('_action', null, [
                 'actions' => [
                     'edit' => [],

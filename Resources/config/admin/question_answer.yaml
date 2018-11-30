@@ -12,8 +12,8 @@ services:
                 name: sonata.admin
                 manager_type: orm
                 show_in_dashboard: true
-                group: 'Content'
-                label: 'QA'
+                group: 'menu.group.content'
+                label: 'menu.item.questionsAnswers'
                 icon: '<i class="fa fa-file-text"></i>'
 
     sonata.admin.question_answer.log:
@@ -40,7 +40,7 @@ services:
                 name: sonata.admin
                 manager_type: orm
                 show_in_dashboard: true
-                group: 'Content'
-                label: 'QA - Category'
+                group: 'menu.group.content'
+                label: 'menu.item.questionsAnswersCategories'
                 icon: '<i class="fa fa-file-text"></i>'
 

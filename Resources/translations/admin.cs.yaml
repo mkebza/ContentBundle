@@ -1,0 +1,67 @@
+Image:
+    field:
+        name: Název
+        image: Obrázek
+        size: Velikost
+        dimensions: Rozměry
+        mime: Typ
+        main: Hlavní obrázek
+    action:
+        setMain:
+            flashSuccess: Obrázek ':image' byl nastaven jako hlavní u ':entity'
+
+Gallery:
+    field:
+        name: Název
+        key: Klíč
+        description: Popis
+        active: Aktivní
+    menu:
+        images: Obrázky
+
+TextBlock:
+    field:
+        name: Název
+        key: Klíč
+        title: Titulek
+        type: Typ
+        content: Obsah
+    panel:
+        extra: Extra
+        developer: Interní
+
+Page:
+    field:
+        name: Název
+        key: Klíč
+        title: Titulek
+        type: Typ
+        content: Obsah
+    panel:
+        extra: Extra
+        developer: Interní
+
+QuestionAnswer:
+    field:
+        question: Otázka
+        answer: Odpověď
+        categories: Kategorie
+        priority: Priorita
+        active: Aktivní
+
+QuestionAnswerCategory:
+    field:
+        name: Název
+        priority: Priorita
+        created: Vytvořeno
+
+menu:
+    group:
+        content: Obsah
+    item:
+        galleries: Galerie
+        pages: Stránky
+        questionsAnswers: Otázky a odpovědi
+        questionsAnswersCategories: Kategorie otázek a odpovědí
+        textBlocks: Bloky
+
