@@ -31,7 +31,7 @@ class MapInheritanceListener implements EventSubscriber
         $metadata = $event->getClassMetadata();
         $classes = [];
 
-        if (!$metadata->getReflectionClass()->isSubclassOf(Image::class)) {
+        if (null === $metadata->getReflectionClass() || !$metadata->getReflectionClass()->isSubclassOf(Image::class)) {
             return;
         }
 
