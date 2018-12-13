@@ -153,8 +153,10 @@ class TextBlock implements LoggableInterface
     /**
      * @param null|string $type
      */
-    public function setType(?string $type): void
+    public function setType(?string $type): self
     {
         $this->type = $type;
+
+        return $this;
     }
 }
