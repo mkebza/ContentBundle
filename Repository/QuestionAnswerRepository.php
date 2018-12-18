@@ -30,7 +30,7 @@ class QuestionAnswerRepository extends ServiceEntityRepository
      *
      * @return array
      */
-    public function findAllGroupedByCategory()
+    public function findAllGroupedByCategory(bool $includeEmpty = false)
     {
         $result = $this->getEntityManager()->createQueryBuilder()
             ->select('c')
@@ -48,6 +48,12 @@ class QuestionAnswerRepository extends ServiceEntityRepository
             foreach ($question->getCategories() as $category) {
                 $result[$category->getId()]['questions'][] = $question;
             }
+        }
+
+        if (!$includeEmpty) {
+            $result = array_filter($result, function($v) {
+                return !empty($v['questions']);
+            });
         }
 
         return $result;
