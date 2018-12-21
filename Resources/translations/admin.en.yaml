@@ -4,6 +4,7 @@ Image:
         image: Image
         size: Size
         dimensions: Dimensions
+        active: Aktivní
         mime: Mime
         main: Main image
     action:

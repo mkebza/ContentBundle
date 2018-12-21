@@ -4,6 +4,7 @@ Image:
         image: Obrázek
         size: Velikost
         dimensions: Rozměry
+        active: Aktivní
         mime: Typ
         main: Hlavní obrázek
     action:
