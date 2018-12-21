@@ -11,9 +11,7 @@ declare(strict_types=1);
 
 namespace MKebza\Content\Admin;
 
-use Knp\Menu\ItemInterface;
 use MKebza\SonataExt\Admin\AbstractAdmin;
-use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
@@ -21,6 +19,26 @@ class GalleryAdmin extends AbstractAdmin
 {
     protected $baseRoutePattern = 'gallery';
     protected $baseRouteName = 'admin_gallery';
+
+    public function getTabMenuMap(): array
+    {
+        $baseLevel = [
+            $this->createTabMenuItem('Gallery.menu.images', 'admin_gallery_image_list', ['id'], 'th'),
+        ];
+
+        $baseLevelWithParent = array_merge(
+            [$this->createParentTabMenuItem()],
+            $baseLevel
+        );
+
+        return [
+            self::class => [['actions' => ['edit'], 'items' => $baseLevel]],
+
+            'sonata.admin.gallery.image' => [
+                ['actions' => ['list', 'edit', 'create'], 'items' => $baseLevelWithParent],
+            ],
+        ];
+    }
 
     protected function configureFormFields(FormMapper $form)
     {
@@ -40,26 +58,6 @@ class GalleryAdmin extends AbstractAdmin
                 ->end()
             ;
         }
-    }
-
-    public function getTabMenuMap(): array
-    {
-        $baseLevel = [
-            $this->createTabMenuItem('Gallery.menu.images', 'admin_gallery_image_list', ['id'], 'th'),
-        ];
-
-        $baseLevelWithParent = array_merge(
-            [$this->createParentTabMenuItem()],
-            $baseLevel
-        );
-
-        return [
-            self::class => [['actions' => ['edit'], 'items' => $baseLevel]],
-
-            'sonata.admin.gallery.image' => [
-                ['actions' => ['list', 'edit', 'create'], 'items' => $baseLevelWithParent]
-            ],
-        ];
     }
 
     protected function configureListFields(ListMapper $list)

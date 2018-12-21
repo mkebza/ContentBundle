@@ -110,14 +110,14 @@ class ImageAdmin extends AbstractAdmin
         if ($this->isCreating()) {
             $form->add('image', VichImageType::class, [
                 'label' => 'Image.field.image',
-                'attr' => ['class' => 'image-multi-tab-input-file']]
+                'attr' => ['class' => 'image-multi-tab-input-file'], ]
             );
         }
 
         $form
             ->add('name', null, [
                 'label' => 'Image.field.name',
-                'attr' => ['class' => 'image-multi-tab-input-name']
+                'attr' => ['class' => 'image-multi-tab-input-name'],
             ])
             ->ifEnd();
     }
@@ -127,7 +127,7 @@ class ImageAdmin extends AbstractAdmin
         $list
             ->add('image', null, [
                 'label' => 'Image.field.image',
-                'template' => '@MKebzaContent/image/list/preview.html.twig'
+                'template' => '@MKebzaContent/image/list/preview.html.twig',
             ])
             ->addIdentifier('name', null, [
                 'label' => 'Image.field.name',

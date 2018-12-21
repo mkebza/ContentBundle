@@ -42,7 +42,6 @@ class ViewController extends AbstractController
             $eventSpecificData = $eventSpecific->getData();
         }
 
-
         return $this->render($template, array_merge($eventGeneral->getData(), $eventSpecificData, [
             'page' => $page,
         ]));

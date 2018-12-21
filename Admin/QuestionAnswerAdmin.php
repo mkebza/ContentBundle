@@ -58,11 +58,11 @@ class QuestionAnswerAdmin extends AbstractAdmin
             ->addIdentifier('question', null, ['label' => 'QuestionAnswer.field.question'])
             ->add('categories', null, [
                 'label' => 'QuestionAnswer.field.categories',
-                'associated_property' => 'name'
+                'associated_property' => 'name',
             ])
             ->add('active', 'boolean', [
                 'label' => 'QuestionAnswer.field.active',
-                'editable' => true
+                'editable' => true,
             ])
             ->add('priority', null, ['label' => 'QuestionAnswer.field.priority'])
             ->add('created', null, ['label' => 'QuestionAnswer.field.created'])

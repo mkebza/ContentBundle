@@ -51,7 +51,7 @@ class QuestionAnswerRepository extends ServiceEntityRepository
         }
 
         if (!$includeEmpty) {
-            $result = array_filter($result, function($v) {
+            $result = array_filter($result, function ($v) {
                 return !empty($v['questions']);
             });
         }

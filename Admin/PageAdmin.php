@@ -102,7 +102,7 @@ class PageAdmin extends AbstractAdmin
             ->addIdentifier('name', null, ['label' => 'Page.field.name'])
             ->add('active', null, [
                 'editable' => true,
-                'label' => 'Page.field.active'
+                'label' => 'Page.field.active',
             ]);
 
         if ($this->isGrantedSymfony('ROLE_DEVELOPER')) {
