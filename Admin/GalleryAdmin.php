@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace MKebza\Content\Admin;
 
 use MKebza\SonataExt\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
@@ -40,6 +41,19 @@ class GalleryAdmin extends AbstractAdmin
         ];
     }
 
+    protected function configureDatagridFilters(DatagridMapper $filter)
+    {
+        $filter
+            ->add('name', null, ['label' => 'Gallery.field.name'])
+            ->add('active', null, ['label' => 'Gallery.field.active'])
+        ;
+
+        if ($this->isGrantedSymfony('ROLE_DEVELOPER')) {
+            $filter->add('key', null, ['label' => 'Gallery.field.key']);
+        }
+    }
+
+
     protected function configureFormFields(FormMapper $form)
     {
         parent::configureFormFields($form);
@@ -62,7 +76,10 @@ class GalleryAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $list)
     {
-        $list->addIdentifier('name', null, ['label' => 'Gallery.field.name']);
+        $list
+            ->addIdentifier('name', null, ['label' => 'Gallery.field.name'])
+            ->add('active', null, ['label' => 'Gallery.field.active', 'editable' => true])
+        ;
 
         if ($this->isGrantedSymfony('ROLE_DEVELOPER')) {
             $list->add('key', null, ['label' => 'Gallery.field.key']);
