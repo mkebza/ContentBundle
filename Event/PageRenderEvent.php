@@ -14,7 +14,7 @@ namespace MKebza\Content\Event;
 use MKebza\Content\Entity\Page;
 use Symfony\Component\EventDispatcher\Event;
 
-class PageRenderEvent extends Event
+final class PageRenderEvent extends Event
 {
     /**
      * @var array
@@ -62,6 +62,13 @@ class PageRenderEvent extends Event
     public function setData(array $data): self
     {
         $this->data = $data;
+
+        return $this;
+    }
+
+    public function mergeData(array $data): self
+    {
+        $this->data = array_merge($this->data, $data);
 
         return $this;
     }
