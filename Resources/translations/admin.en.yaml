@@ -1,9 +1,68 @@
 Image:
     field:
+        name: Name
+        image: Image
         size: Size
         dimensions: Dimensions
+        active: Aktivní
         mime: Mime
         main: Main image
     action:
         setMain:
             flashSuccess: Image ':image' was set as main for object ':entity'
+
+Gallery:
+    field:
+        name: Name
+        key: Key
+        description: Description
+        active: Active
+    menu:
+        images: Images
+
+TextBlock:
+    field:
+        name: Name
+        key: Key
+        title: Title
+        type: Type
+        content: Content
+    panel:
+        extra: Extra
+        developer: Developer
+
+Page:
+    field:
+        name: Name
+        key: Key
+        title: Title
+        type: Type
+        content: Content
+    panel:
+        extra: Extra
+        developer: Developer
+
+QuestionAnswer:
+    field:
+        question: Question
+        answer: Answer
+        categories: Categories
+        priority: Priority
+        active: Active
+
+QuestionAnswerCategory:
+    field:
+        name: Name
+        priority: Priority
+        created: Created
+
+menu:
+    group:
+        content: Content
+    item:
+        galleries: Galleries
+        pages: Pages
+        questionsAnswers: QAs
+        questionsAnswersCategories: QAs - Categories
+        textBlocks: Blocks
+

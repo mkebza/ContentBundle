@@ -11,9 +11,8 @@ declare(strict_types=1);
 
 namespace MKebza\Content\Admin;
 
-use Knp\Menu\ItemInterface;
 use MKebza\SonataExt\Admin\AbstractAdmin;
-use Sonata\AdminBundle\Admin\AdminInterface;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
@@ -22,62 +21,68 @@ class GalleryAdmin extends AbstractAdmin
     protected $baseRoutePattern = 'gallery';
     protected $baseRouteName = 'admin_gallery';
 
+    public function getTabMenuMap(): array
+    {
+        $baseLevel = [
+            $this->createTabMenuItem('Gallery.menu.images', 'admin_gallery_image_list', ['id'], 'th'),
+        ];
+
+        $baseLevelWithParent = array_merge(
+            [$this->createParentTabMenuItem()],
+            $baseLevel
+        );
+
+        return [
+            self::class => [['actions' => ['edit'], 'items' => $baseLevel]],
+
+            'sonata.admin.gallery.image' => [
+                ['actions' => ['list', 'edit', 'create'], 'items' => $baseLevelWithParent],
+            ],
+        ];
+    }
+
+    protected function configureDatagridFilters(DatagridMapper $filter)
+    {
+        $filter
+            ->add('name', null, ['label' => 'Gallery.field.name'])
+            ->add('active', null, ['label' => 'Gallery.field.active'])
+        ;
+
+        if ($this->isGrantedSymfony('ROLE_DEVELOPER')) {
+            $filter->add('key', null, ['label' => 'Gallery.field.key']);
+        }
+    }
+
+
     protected function configureFormFields(FormMapper $form)
     {
         parent::configureFormFields($form);
 
         $form
             ->with(null)
-                ->add('name')
-                ->add('description')
-                ->add('active')
+                ->add('name', null, ['label' => 'Gallery.field.name'])
+                ->add('description', null, ['label' => 'Gallery.field.description'])
+                ->add('active', null, ['label' => 'Gallery.field.active'])
             ->end();
 
         if ($this->isGrantedSymfony('ROLE_DEVELOPER')) {
             $form
                 ->with('Developer', ['box_class' => 'box box-danger'])
-                    ->add('key')
+                    ->add('key', null, ['label' => 'Gallery.field.key'])
                 ->end()
             ;
         }
     }
 
-    protected function configureTabMenu(ItemInterface $menu, $action, AdminInterface $childAdmin = null)
-    {
-        // For root admin, we are at listing skip
-        if (!$childAdmin && !in_array($action, ['edit', 'show'], true)) {
-            return;
-        }
-
-        $currentAdmin = $this->getCurrentLeafChildAdmin();
-
-        $admin = $this->isChild() ? $this->getParent() : $this;
-        $id = $admin->getRequest()->get('id');
-
-        if (null !== $currentAdmin && $this->isGranted('EDIT')) {
-            $menu
-                ->addChild('Parent', [
-                    'uri' => $admin->generateUrl('edit', ['id' => $id]),
-                ])
-                ->setAttribute('icon', 'fa fa-chevron-left');
-        }
-
-        if ($this->isGranted('LIST')) {
-            $menu
-                ->addChild('Images', [
-                    'route' => 'admin_gallery_image_list',
-                    'routeParameters' => ['id' => $id],
-                ])
-                ->setAttribute('icon', 'fa fa-image');
-        }
-    }
-
     protected function configureListFields(ListMapper $list)
     {
-        $list->addIdentifier('name');
+        $list
+            ->addIdentifier('name', null, ['label' => 'Gallery.field.name'])
+            ->add('active', null, ['label' => 'Gallery.field.active', 'editable' => true])
+        ;
 
         if ($this->isGrantedSymfony('ROLE_DEVELOPER')) {
-            $list->add('key');
+            $list->add('key', null, ['label' => 'Gallery.field.key']);
         }
 
         $list->add('_action', null, ['actions' => [

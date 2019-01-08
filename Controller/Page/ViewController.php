@@ -34,9 +34,15 @@ class ViewController extends AbstractController
             $template = '@MKebzaContent/page/view.html.twig';
         }
 
-        $event = $dispatcher->dispatch(PageRenderEvent::class, new PageRenderEvent($page, []));
+        $eventGeneral = $dispatcher->dispatch(PageRenderEvent::class, new PageRenderEvent($page, []));
 
-        return $this->render($template, array_merge($event->getData(), [
+        $eventSpecificData = [];
+        if (null !== $page->getKey()) {
+            $eventSpecific = $dispatcher->dispatch(sprintf('%s.%s', PageRenderEvent::class, $page->getKey()), new PageRenderEvent($page, []));
+            $eventSpecificData = $eventSpecific->getData();
+        }
+
+        return $this->render($template, array_merge($eventGeneral->getData(), $eventSpecificData, [
             'page' => $page,
         ]));
     }

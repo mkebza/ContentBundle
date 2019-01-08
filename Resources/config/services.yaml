@@ -110,7 +110,22 @@ services:
             $repository: '@MKebza\Content\Repository\PageRepository'
         tags: ['mkebza_sitemap.generator']
 
+
     MKebza\Content\Service\Image\ImageCreator: ~
+    MKebza\Content\Service\TextBlock\TextBlockCreator: ~
+    mkebza_content.text_block.creator:
+        alias: MKebza\Content\Service\TextBlock\TextBlockCreator
+        public: true
+
+    MKebza\Content\Service\Page\PageCreator: ~
+    mkebza_content.page.creator:
+        alias: MKebza\Content\Service\Page\PageCreator
+        public: true
+
+    MKebza\Content\Service\Gallery\GalleryCreator: ~
+    mkebza_content.gallery.creator:
+        alias: MKebza\Content\Service\Gallery\GalleryCreator
+        public: true
 
     vich_uploader.storage.flysystem_overwriting:
         class: MKebza\Content\Service\VichUploader\OverwritingFlysystemStorage

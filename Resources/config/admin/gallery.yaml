@@ -12,8 +12,8 @@ services:
                 name: sonata.admin
                 manager_type: orm
                 show_in_dashboard: true
-                group: 'Content'
-                label: 'Gallery'
+                group: 'menu.group.content'
+                label: 'menu.item.galleries'
                 icon: '<i class="fa fa-file-text"></i>'
 
     sonata.admin.gallery.image:
