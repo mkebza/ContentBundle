@@ -80,7 +80,7 @@ services:
 
     MKebza\Content\Service\Page\PageRegistry:
         arguments:
-            $em: '@doctrine.orm.default_entity_manager'
+            $repository: '@MKebza\Content\Repository\PageRepository'
 
     MKebza\Content\Service\Page\PageTypeRegistry:
         arguments:
