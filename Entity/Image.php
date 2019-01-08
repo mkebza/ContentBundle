@@ -99,7 +99,7 @@ class Image implements ImageInterface
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      */
-    public function setImage(?File $image = null): void
+    public function setImage(?File $image = null): self
     {
         $this->image = $image;
 
@@ -111,6 +111,7 @@ class Image implements ImageInterface
          *            $this->updatedAt = new \DateTimeImmutable();
          *        }
          */
+        return $this;
     }
 
     /**

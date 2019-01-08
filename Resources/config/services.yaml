@@ -4,6 +4,7 @@ services:
             $em: '@doctrine.orm.entity_manager'
             $textBlockEntityClass: '%mkebza_content.entity.text_block%'
             $galleryEntityClass: '%mkebza_content.entity.gallery%'
+            $imageEntityClass: '%mkebza_content.entity.image%'
             $pageEntityClass: '%mkebza_content.entity.page%'
             $questionAnswerEntityClass: '%mkebza_content.entity.question_answer%'
             $questionAnswerCategoryEntityClass: '%mkebza_content.entity.question_answer_category%'
@@ -77,6 +78,10 @@ services:
             $repository: '@MKebza\Content\Repository\TextBlockRepository'
         tags: ['twig.runtime']
 
+    MKebza\Content\Service\Page\PageRegistry:
+        arguments:
+            $em: '@doctrine.orm.default_entity_manager'
+
     MKebza\Content\Service\Page\PageTypeRegistry:
         arguments:
             $types: !tagged mkebza_content.page_type
@@ -104,6 +109,8 @@ services:
             $router: '@router'
             $repository: '@MKebza\Content\Repository\PageRepository'
         tags: ['mkebza_sitemap.generator']
+
+    MKebza\Content\Service\Image\ImageCreator: ~
 
     vich_uploader.storage.flysystem_overwriting:
         class: MKebza\Content\Service\VichUploader\OverwritingFlysystemStorage

@@ -15,7 +15,7 @@ trait EntityImage
 {
     /**
      * @var null|ImageInterface
-     * @ORM\ManyToOne(targetEntity="MKebza\Content\ORM\ImageInterface")
+     * @ORM\ManyToOne(targetEntity="MKebza\Content\ORM\ImageInterface", fetch="EAGER")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $image;
