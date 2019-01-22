@@ -1,0 +1,6 @@
+services:
+    MKebza\Content\Service\Fixture\Provider\ImageFileProvider:
+        arguments:
+            $path: '%kernel.project_dir%/assets/fixture/'
+        tags: ['nelmio_alice.faker.provider']
+

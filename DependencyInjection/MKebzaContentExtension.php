@@ -39,6 +39,11 @@ class MKebzaContentExtension extends Extension
 
         $loader->load('services.yaml');
 
+        if ($container->getParameter('kernel.environment') !== 'prod') {
+            $loader->load('services_dev.yaml');
+        }
+
+
         // Include registered admins
         foreach ($config['admin'] as $name => $enabled) {
             if ($enabled) {
