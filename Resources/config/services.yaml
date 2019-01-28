@@ -20,6 +20,10 @@ services:
     MKebza\Content\Twig\Extension\ImageExtension:
         tags: ['twig.extension']
 
+    MKebza\Content\Twig\Extension\OpenGraphExtension:
+        tags: ['twig.extension']
+
+
     MKebza\Content\Twig\Runtime\ImageRuntime:
         arguments:
             $helper: '@Vich\UploaderBundle\Templating\Helper\UploaderHelper'
@@ -90,6 +94,10 @@ services:
 
     MKebza\Content\Twig\Runtime\PageRuntime:
         tags: ['twig.runtime']
+
+    MKebza\Content\Twig\Runtime\OpenGraphRuntime:
+        tags: ['twig.runtime']
+
 
     MKebza\Content\Service\VichUploader\ImageDirectoryNamer:
         public: true # Because of vich uploader
